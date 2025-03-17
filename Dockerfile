@@ -10,7 +10,7 @@ RUN cd / && unzip platform-tools-latest-linux.zip
 
 RUN PATH="$HOME/platform-tools:$PATH"
 
-RUN apt install python-is-python3
+RUN apt install python-is-python3 -y
 
 RUN mkdir -p ~/bin && mkdir -p ~/android/lineage
 
