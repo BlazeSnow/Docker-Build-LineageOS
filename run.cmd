@@ -1,1 +1,1 @@
-docker build -t test:latest .
+docker.exe run -it --name lineageos-build-env lineageos-builder

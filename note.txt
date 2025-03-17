@@ -1,0 +1,7 @@
+repo sync
+source build/envsetup.sh
+breakfast xmsirius
+cd device/xiaomi/xmsirius
+./extract-files.sh
+croot
+brunch xmsirius
