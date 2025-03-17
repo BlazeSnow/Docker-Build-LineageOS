@@ -22,8 +22,13 @@ RUN apt update && apt full-upgrade -y && apt autoclean -y && apt autoremove -y &
 # 设置工作目录
 WORKDIR /root/android/lineage
 
-# 初始化 repo
-RUN repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --no-clone-bundle
+# 初始化和同步代码
+RUN repo init -u https://github.com/LineageOS/android.git -b lineage-20.0 --git-lfs --no-clone-bundle && \
+    repo sync -j$(nproc) --force-sync
 
-# 提示用户同步代码
-CMD ["/bin/bash", "-c", "echo 'Run repo sync manually after starting the container!' && /bin/bash"]
+# 准备编译环境
+RUN source build/envsetup.sh && breakfast xmsirius && \
+    cd device/xiaomi/xmsirius && ./extract-files.sh
+
+# 默认命令，开始编译
+CMD ["/bin/bash", "-c", "croot && brunch xmsirius"]

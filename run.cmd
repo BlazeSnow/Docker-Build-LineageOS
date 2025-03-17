@@ -1,1 +1,1 @@
-docker.exe run -it --name lineageos-build-env lineageos-builder
+docker.exe run -it docker.cnb.cool/blazesnow/buildlineageos
