@@ -2,11 +2,13 @@ FROM ubuntu:24.04
 
 COPY platform-tools-latest-linux.zip /
 
+RUN apt update && apt full-upgrade -y && apt autoclean -y && apt autoremove -y
+
+RUN apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool lz4 libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+
 RUN cd / && unzip platform-tools-latest-linux.zip
 
 RUN PATH="$HOME/platform-tools:$PATH"
-
-RUN apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev libelf-dev liblz4-tool lz4 libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
 
 RUN apt install python-is-python3
 
